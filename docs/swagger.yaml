@@ -1,0 +1,124 @@
+basePath: /api/
+definitions:
+  database.Car:
+    properties:
+      brand:
+        type: string
+      created:
+        type: string
+      id:
+        type: string
+      model:
+        type: string
+    type: object
+  handlers.Failure:
+    properties:
+      message:
+        items:
+          type: string
+        type: array
+    type: object
+  handlers.Fatal:
+    properties:
+      message:
+        type: string
+    type: object
+  service.Embedded:
+    type: object
+  service.HalResponse:
+    properties:
+      _embedded:
+        $ref: '#/definitions/service.Embedded'
+      _links:
+        $ref: '#/definitions/service.SelfURL'
+      _status:
+        type: string
+      data:
+        $ref: '#/definitions/database.Car'
+    type: object
+  service.PostRequest:
+    properties:
+      brand:
+        type: string
+      model:
+        type: string
+    required:
+    - brand
+    - model
+    type: object
+  service.SelfURL:
+    type: object
+info:
+  contact:
+    email: dponomarov25@gmail.com
+  description: Swagger API for cars service.
+  title: Cars service Swagger API
+  version: "1.0"
+paths:
+  /car:
+    get:
+      consumes:
+      - application/json
+      description: Get car by ID
+      parameters:
+      - description: Car ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/service.HalResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.Failure'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.Failure'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.Fatal'
+      summary: Get car
+      tags:
+      - cars
+    post:
+      consumes:
+      - application/json
+      description: Create car with the input payload
+      parameters:
+      - description: Request for create car
+        in: body
+        name: post_request
+        required: true
+        schema:
+          $ref: '#/definitions/service.PostRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/service.HalResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.Failure'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.Failure'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.Fatal'
+      summary: Create car
+      tags:
+      - cars
+swagger: "2.0"
