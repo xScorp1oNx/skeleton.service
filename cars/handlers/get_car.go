@@ -14,8 +14,8 @@ import (
 // @Produce json
 // @Param id query string true "Car ID"
 // @Success 200 {object} service.HalResponse
-// @Failure 400,404 {object} Failure
-// @Failure 500 {object} Fatal
+// @Failure 400 {object} Failure
+// @Failure 404,500 {object} Fatal
 // @Router /car [get]
 func GetCar(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()

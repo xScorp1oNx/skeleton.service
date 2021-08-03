@@ -15,8 +15,8 @@ import (
 // @Produce json
 // @Param post_request body service.PostRequest true "Request for create car"
 // @Success 201 {object} service.HalResponse
-// @Failure 400,404 {object} Failure
-// @Failure 500 {object} Fatal
+// @Failure 422 {object} Failure
+// @Failure 400,500 {object} Fatal
 // @Router /car [post]
 func PostCar(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
@@ -34,7 +34,7 @@ func PostCar(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(mess) > 0 {
-		FailureResponse(ctx, mess, http.StatusBadRequest, w)
+		FailureResponse(ctx, mess, http.StatusUnprocessableEntity, w)
 		return
 	}
 

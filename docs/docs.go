@@ -62,13 +62,13 @@ var doc = `{
                         }
                     },
                     "404": {
-                        "description": "Bad Request",
+                        "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/handlers.Failure"
+                            "$ref": "#/definitions/handlers.Fatal"
                         }
                     },
                     "500": {
-                        "description": "Internal Server Error",
+                        "description": "Not Found",
                         "schema": {
                             "$ref": "#/definitions/handlers.Fatal"
                         }
@@ -108,17 +108,17 @@ var doc = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.Failure"
+                            "$ref": "#/definitions/handlers.Fatal"
                         }
                     },
-                    "404": {
-                        "description": "Bad Request",
+                    "422": {
+                        "description": "Unprocessable Entity",
                         "schema": {
                             "$ref": "#/definitions/handlers.Failure"
                         }
                     },
                     "500": {
-                        "description": "Internal Server Error",
+                        "description": "Bad Request",
                         "schema": {
                             "$ref": "#/definitions/handlers.Fatal"
                         }

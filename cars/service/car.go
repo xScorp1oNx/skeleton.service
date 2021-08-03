@@ -3,17 +3,17 @@ package service
 import (
 	"context"
 	"github.com/go-playground/validator/v10"
-	validators2 "skeleton.service/validators"
+	"skeleton.service/validators"
 )
 
 func ValidatePostRequest(ctx context.Context, request PostRequest) ([]string, error) {
 	var messages []string
 
-	if err := validators2.Validator.GetValidator().Struct(request); err != nil {
+	if err := validators.Validator.GetValidator().Struct(request); err != nil {
 		for _, e := range err.(validator.ValidationErrors) {
 			messages = append(
 				messages,
-				e.Translate(validators2.Validator.GetTranslator()),
+				e.Translate(validators.Validator.GetTranslator()),
 			)
 		}
 	}

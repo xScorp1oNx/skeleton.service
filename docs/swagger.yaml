@@ -78,11 +78,11 @@ paths:
           schema:
             $ref: '#/definitions/handlers.Failure'
         "404":
-          description: Bad Request
+          description: Not Found
           schema:
-            $ref: '#/definitions/handlers.Failure'
+            $ref: '#/definitions/handlers.Fatal'
         "500":
-          description: Internal Server Error
+          description: Not Found
           schema:
             $ref: '#/definitions/handlers.Fatal'
       summary: Get car
@@ -109,13 +109,13 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/handlers.Failure'
-        "404":
-          description: Bad Request
+            $ref: '#/definitions/handlers.Fatal'
+        "422":
+          description: Unprocessable Entity
           schema:
             $ref: '#/definitions/handlers.Failure'
         "500":
-          description: Internal Server Error
+          description: Bad Request
           schema:
             $ref: '#/definitions/handlers.Fatal'
       summary: Create car
